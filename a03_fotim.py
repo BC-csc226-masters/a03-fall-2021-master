@@ -33,6 +33,12 @@ def move (t, x, y):
 
 
 def OutsideRing(Outside, i):
+    """
+    Draws the outside ring
+    :param Outside: The turtle
+    :param i: an iterator for the while loop
+    :return: None
+    """
     move(Outside, -45, 170)
     while i < 3:  # The loop that creates the outer ring.
         i += 1
@@ -51,6 +57,14 @@ def OutsideRing(Outside, i):
 
 
 def InnerRing(Inside, i, k):
+
+    """
+    Draws the inside ring of the SCP logo
+    :param Inside: The turtle
+    :param i: an iterator for the first while loop
+    :param k: an iterator for the second loop
+    :return: None
+    """
     move(Inside, -5, 115)
     while i < 3:  # The loop that creates the inner ring.
         i += 1
@@ -76,6 +90,12 @@ def InnerRing(Inside, i, k):
 
 
 def SCP(Letters):
+
+    """
+    Draws the letters S, C, and P
+    :param Letters: The turtle
+    :return: None
+    """
     move(Letters, -67, -100)  # Draws the S
     Letters.fd(18)
     Letters.back(18)
@@ -93,18 +113,94 @@ def SCP(Letters):
     Letters.fd(60)
     Letters.circle(-20, 270)
 
+def DrawCat(Cat):
+
+    """
+    Draws a cat
+    :param Cat: The turtle
+    :return: None
+    """
+    move(Cat, -14, -210)
+    Cat.fd(20)
+    Cat.circle(10, 70) # Makes the Neck
+    Cat.circle(-10, 70)
+    Cat.left(80)
+    Cat.fd(10)
+    Cat.right(140) # Makes the ears
+    Cat.fd(13)
+    Cat.fd(-13)
+    Cat.right(-140)
+    Cat.fd(-10)
+    Cat.left(-80)
+    Cat.fd(8)
+    Cat.circle(-5, 90) # Makes the Face
+    Cat.circle(5, 90)
+    Cat.circle(-3, 180)
+    Cat.fd(3)
+    Cat.circle(10, 90) # Begins working on the torso
+    Cat.circle(-10, 90)
+    Cat.fd(7)
+    DrawCatLeg(Cat, 110)
+    Cat.fd(7)
+    DrawCatLeg(Cat, 70)
+    Cat.fd(24)
+    DrawCatLeg(Cat, 110)
+    Cat.fd(7)
+    DrawCatLeg(Cat, 70)
+    Cat.fd(-3)
+    Cat.circle(-10, 90) # Makes the rear end
+    Cat.fd(3)
+    Cat.circle(-10, 90)
+    Cat.fd(10)
+    Cat.fd(-10)
+    Cat.circle(-10, -45) # Makes the tail.
+    Cat.circle(10, -30)
+    Cat.circle(-10, -90)
+    Cat.circle(10, -90)
+
+    move(Cat, -9, -230)
+    Cat.up()
+    Cat.write("Cat", True, font=("Ariel", 10, "normal"))
+
+
+def DrawCatLeg(Cat, Angle):
+
+    """
+    Draws a cat leg using a given starter angle.
+    :param Cat: The turtle
+    :param Angle: The angle at which the leg is drawn
+    :return: None
+    """
+    Cat.left(Angle)
+    Cat.fd(17)
+    Cat.right(-90)
+    Cat.fd(6)
+    Cat.fd(-6)
+    Cat.right(90)
+    Cat.fd(-17)
+    Cat.left(-Angle)
+
 
 def main():
     wn = turtle.Screen()
+
     Outside = turtle.Turtle()
     Inside = turtle.Turtle()
     Letters = turtle.Turtle()
+    Cat = turtle.Turtle()
     i = 0
     k = 0
+
+    Outside.speed(0)
+    Inside.speed(0)
+    Letters.speed(0)
+    Cat.speed(0)
 
     Outside.width(10)
     Inside.width(10)
     Letters.width(15)
+    Cat.width(2.5)
+    Cat.color(0, 0, .8)
 
     wn.bgcolor(0, 0, 0)
 
@@ -115,6 +211,7 @@ def main():
     OutsideRing(Outside, i)
     InnerRing(Inside, i, k)
     SCP(Letters)
+    DrawCat(Cat)
 
     wn.exitonclick()
 
